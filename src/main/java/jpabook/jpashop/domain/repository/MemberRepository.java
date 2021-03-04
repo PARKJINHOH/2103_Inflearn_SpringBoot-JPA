@@ -1,18 +1,20 @@
 package jpabook.jpashop.domain.repository;
 
 import jpabook.jpashop.domain.Member;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 // Spring에서 지원하며 @Repository를 사용하면 Bean으로 등록됨
 @Repository
+@RequiredArgsConstructor
 public class MemberRepository {
 
-    @PersistenceContext
-    private EntityManager em;
+//    @PersistenceContext
+    // spirng data jpa에서 지원한다. 
+    private final EntityManager em;
 
     public void save(Member member) {
         em.persist(member);
