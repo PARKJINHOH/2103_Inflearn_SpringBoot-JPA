@@ -1,4 +1,4 @@
-package jpabook.jpashop.domain.repository;
+package jpabook.jpashop.repository;
 
 import jpabook.jpashop.domain.Member;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +13,7 @@ import java.util.List;
 public class MemberRepository {
 
 //    @PersistenceContext
-    // spirng data jpa에서 지원한다. 
+    // spirng data jpa에서 지원한다.
     private final EntityManager em;
 
     public void save(Member member) {
