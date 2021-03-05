@@ -12,7 +12,7 @@ spring:
       hibernate:
 #        System.out.print를 통해 출력(logger를 통해 출력하자)
 #        show_sql: true
-        format_sql: ture
+        format_sql: true
 
 logging.level:
 #    logger을 통해 출력

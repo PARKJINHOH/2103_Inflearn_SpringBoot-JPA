@@ -9,7 +9,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.Assert.*;
+import javax.persistence.EntityManager;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -22,7 +25,11 @@ public class MemberServiceTest {
     @Autowired
     MemberRepository memberRepository;
 
+    @Autowired
+    EntityManager em;
+
     @Test
+//    @Rollback(false) // 실제 insert됨
     public void 회원가입() throws Exception {
 
         // given
@@ -38,16 +45,48 @@ public class MemberServiceTest {
 
 
     @Test
-    public void 중복_회원_예외() throws Exception {
+    public void 중복_회원_예외_1() throws Exception {
+
+        // try_catch로 해야 할까?
 
         // given
+        Member member1 = new Member();
+        member1.setName("kim");
 
+        Member member2 = new Member();
+        member2.setName("kim");
 
         // when
-
+        memberService.join(member1);
+        try {
+            memberService.join(member2);  // 예외 발생해야함.
+        } catch (IllegalStateException e) {
+            return;
+        }
 
         // then
+        fail("예외가 발생해야 한다.");
 
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void 중복_회원_예외_2() throws Exception {
+
+        // try_catch 보다는 @Test(expected) 사용하자
+
+        // given
+        Member member1 = new Member();
+        member1.setName("kim");
+
+        Member member2 = new Member();
+        member2.setName("kim");
+
+        // when
+        memberService.join(member1);
+        memberService.join(member2);  // 예외 발생해야함.
+
+        // then
+        fail("예외가 발생해야 한다.");
 
     }
 
