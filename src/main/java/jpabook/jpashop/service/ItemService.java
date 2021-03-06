@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class ItemSerrvice {
+public class ItemService {
 
     private final ItemRepository itemRepository;
 
@@ -27,5 +27,6 @@ public class ItemSerrvice {
     public Item findOne(Long itemId) {
         return itemRepository.findOne(itemId);
     }
+
 
 }
