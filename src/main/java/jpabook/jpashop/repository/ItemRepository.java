@@ -18,6 +18,9 @@ public class ItemRepository {
             em.persist(item);
         } else {
             em.merge(item);
+//            Item merge = em.merge(item);
+            // item은 준영속 상태, merge는 영속상태이다.
+            // 그래서 더 사용할 께 있다면 merge 변수를 사용해야 한다.
         }
     }
 

@@ -20,6 +20,20 @@ public class ItemService {
         itemRepository.save(item);
     }
 
+    @Transactional
+    public void updateItem(Long itemId, String name, int price, int stockQuantity) { // param : 파라미터로 넘어온 준영속 상태의 Entity
+        Item findItem = itemRepository.findOne(itemId); // 같은 Entity를 조회
+
+        findItem.setName(name);
+        findItem.setPrice(price);
+        findItem.setStockQuantity(stockQuantity);
+
+        // save할 필요가 없다. @Transactional에 의해서 자동으로 Commit됨
+        //        itemRepository.save(findItem);
+
+    }
+
+
     public List<Item> findItems() {
         return itemRepository.findAll();
     }
