@@ -1,6 +1,5 @@
 package jpabook.jpashop.service;
 
-import jpabook.jpashop.domain.item.Book;
 import jpabook.jpashop.domain.item.Item;
 import jpabook.jpashop.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +24,7 @@ public class ItemService {
     public void updateItem(Long itemId, String name, int price, int stockQuantity) { // param : 파라미터로 넘어온 준영속 상태의 Entity
         Item findItem = itemRepository.findOne(itemId); // 같은 Entity를 조회
 
-        findItem.setName(name;
+        findItem.setName(name);
         findItem.setPrice(price);
         findItem.setStockQuantity(stockQuantity);
 
